@@ -5,6 +5,15 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Heart, Album } from "lucide-react";
 
+const coupons = [
+    { title: "Unlimited Massages", description: "Redeem anytime for a relaxing massage!" },
+    { title: "Movie Night of Your Choice", description: "Pick any movie, and I'll watch it with you!" },
+    { title: "Breakfast in Bed", description: "A cozy breakfast delivered straight to you!" },
+    { title: "One Day of No Chores", description: "Sit back and relax while I do all the work!" },
+    { title: "Cuddle Session", description: "Redeem for unlimited cuddles!" },
+    { title: "Date Night of Your Choice", description: "You pick the place, and I'll make it happen!" }
+];
+
 const reasons = [
     "Your Deep and Transparent Eyes",
     "Your Thick Thighs (aaaaaaa)",
@@ -91,19 +100,20 @@ function Home() {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-pink-100 p-6">
             <motion.h1
-                className="text-4xl font-bold text-red-500 mb-6"
+                className="text-4xl font-bold text-red-500 mb-6 text-center flex justify-center"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
             >
                 Happy Valentine's Day, Trisa! ❤️
             </motion.h1>
 
+
             {/* Random Love GIF */}
             {gifUrl ? (
                 <img
                     src={gifUrl}
                     alt="Random love gif"
-                    className="mb-6 w-full max-w-md rounded-lg shadow-lg"
+                    className="mb-6 w-full max-w-md h-64 object-contain rounded-lg"
                 />
             ) : (
                 <div className="mb-6 w-full max-w-md flex items-center justify-center">
@@ -122,11 +132,11 @@ function Home() {
                             Things
                         </TabsTrigger>
                         <TabsTrigger
-                            value="memories"
+                            value="coupons"
                             className="flex items-center gap-2 text-pink-600 data-[state=active]:bg-pink-200"
                         >
                             <Album className="h-5 w-5" />
-                            Memories
+                            Coupons
                         </TabsTrigger>
                     </TabsList>
                     <TabsContent value="reasons">
@@ -150,15 +160,17 @@ function Home() {
                             </Button>
                         </CardContent>
                     </TabsContent>
-                    <TabsContent value="memories">
+                    <TabsContent value="coupons">
                         <CardContent className="text-center">
-                            <h2 className="text-2xl font-semibold mb-4 text-pink-600">
-                                Our Special Memories
-                            </h2>
-                            <p className="text-gray-700 mb-4">
-                                Coming soon - a collection of our most cherished moments
-                                together!
-                            </p>
+                            <h2 className="text-2xl font-semibold mb-4 text-pink-600">Redeemable Coupons</h2>
+                            <div className="grid gap-4">
+                                {coupons.map((coupon, index) => (
+                                    <Card key={index} className="bg-pink-200 p-4 rounded-lg shadow-md">
+                                        <h3 className="text-xl font-bold text-pink-700">{coupon.title}</h3>
+                                        <p className="text-sm text-gray-700">{coupon.description}</p>
+                                    </Card>
+                                ))}
+                            </div>
                         </CardContent>
                     </TabsContent>
                 </Tabs>
